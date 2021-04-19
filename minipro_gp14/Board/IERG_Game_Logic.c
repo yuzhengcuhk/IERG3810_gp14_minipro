@@ -1,6 +1,6 @@
 #include "IERG_Game_Logic.h"
 
-#define Max_Lof_snake 10 // win after this long
+#define Max_Lof_snake 50 // win after this long
 
 u8 key;
 u8 start=0;
@@ -12,9 +12,9 @@ struct Snake
 	s16 Y[Max_Lof_snake];
 	u8 Long;
 	u8 Life;
-	u8 Direction;
-}snake;
+	u8 Direction; 
 
+}snake;
 
 struct Food
 {
@@ -29,6 +29,66 @@ struct Game
 	u16 Score;
 	u8 Life;
 }game;
+
+
+
+
+void start_page(void)	
+{	
+	int i=0;
+	char title[] = "Start Page";
+	char start[] = "New game start at:";
+	char CUID1[] = "1155095162";
+	char CUID2[] = "1155126633";
+	GPIOB->BRR = 1 << 8;
+	delay_ms(300);
+	TFT_ClearScreen(WHITE);
+	
+	for(i=0;i<10;i++)
+		{IERG3810_TFTLCD_ShowChar(i*9+75, 180, title[i], 0, WHITE);}
+		
+	for(i=0;i<18;i++)
+		{IERG3810_TFTLCD_ShowChar(i*9+30, 140, start[i], 0, WHITE);}
+	
+	for(i=0;i<10;i++)
+		{IERG3810_TFTLCD_ShowChar(i*9+10, 10, CUID1[i], 0, WHITE);}
+		
+	for(i=0;i<10;i++)
+		{IERG3810_TFTLCD_ShowChar(i*9+10, 30, CUID2[i], 0, WHITE);}
+	
+	for(i=0;i<3;i++)
+	{	
+			IERG3810_TFTLCD_ShowChar(200, 140, 3-i+'0', 0, WHITE);
+			delay_ms(1000);
+	}
+		
+	start_game();
+}
+
+
+void gameover(u8 score_tran[])
+{
+	int i=0;
+	char over[] = "Game over:(";
+	char score[] = "Your score:";
+	
+	TFT_ClearScreen(WHITE);
+	
+	for(i=0;i<11;i++)
+		{IERG3810_TFTLCD_ShowChar(i*9+70, 180, score[i], 0, WHITE);}
+		
+	for(i=0;i<3;i++)
+		{IERG3810_TFTLCD_ShowChar(i*10+170, 180, score_tran[i], 0, WHITE);}
+		
+	for(i=0;i<11;i++)
+		{IERG3810_TFTLCD_ShowChar(i*9+80, 140, over[i], 0, WHITE);}
+	
+	for(i=0;i<15;i++)
+	{
+		delay_ms(16960);
+	}
+	start_page();
+}
 
 
 void snake_direction(void)
@@ -67,64 +127,6 @@ void TIM3_IRQHandler(void)
 		snake_direction();
 	}
 }  
-
-
-
-void start_page(void)	
-{	
-	int i=0;
-	char title[] = "Start Page";
-	char start[] = "New game start at:";
-	char CUID1[] = "1155095162";
-	char CUID2[] = "1155126633";
-	GPIOB->BRR = 1 << 8;
-	delay_ms(300);
-	TFT_ClearScreen(WHITE);
-	
-	for(i=0;i<10;i++)
-		{IERG3810_TFTLCD_ShowChar(i*9+75, 180, title[i], 0, WHITE);}
-		
-	for(i=0;i<18;i++)
-		{IERG3810_TFTLCD_ShowChar(i*9+30, 140, start[i], 0, WHITE);}
-	
-	for(i=0;i<10;i++)
-		{IERG3810_TFTLCD_ShowChar(i*9+10, 10, CUID1[i], 0, WHITE);}
-		
-	for(i=0;i<10;i++)
-		{IERG3810_TFTLCD_ShowChar(i*9+10, 30, CUID2[i], 0, WHITE);}
-	
-	for(i=0;i<3;i++)
-	{	
-			IERG3810_TFTLCD_ShowChar(200, 140, 3-i+'0', 0, WHITE);
-			delay_ms(1000);
-	}
-		
-	start_game();
-}
-
-void gameover(u8 score_tran[])
-{
-	int i=0;
-	char over[] = "Game over:(";
-	char score[] = "Your score:";
-	
-	TFT_ClearScreen(WHITE);
-	
-	for(i=0;i<11;i++)
-		{IERG3810_TFTLCD_ShowChar(i*9+70, 180, score[i], 0, WHITE);}
-		
-	for(i=0;i<3;i++)
-		{IERG3810_TFTLCD_ShowChar(i*10+170, 180, score_tran[i], 0, WHITE);}
-		
-	for(i=0;i<11;i++)
-		{IERG3810_TFTLCD_ShowChar(i*9+80, 140, over[i], 0, WHITE);}
-	
-	for(i=0;i<15;i++)
-	{
-		delay_ms(16960);
-	}
-	start_page();
-}
 
 
 void start_game()
@@ -237,7 +239,7 @@ void start_game()
 			//the snake out of the boundary, user will lose the game
 			if(snake.X[0]<0||snake.X[0]>220||snake.Y[0]<0||snake.Y[0]>300) {snake.Life=0;}
 			
-		  //the snake hit its' body, life -1
+		  	//the snake hit its' body, life -1
 			for(i=3;i<snake.Long;i++)
 			{
 				if(snake.X[i]==snake.X[0]&&snake.Y[i]==snake.Y[0]) 
@@ -245,8 +247,6 @@ void start_game()
 						game.Life-=1;
 						GPIOB->BSRR = 1 << 8;
 					}
-				//counter++;
-				//if(counter == 10){counter = 0; GPIOB->BRR = 1 << 8;}
 			}
 			
 			//life = 0, gameover
