@@ -737,6 +737,16 @@
               <FileType>5</FileType>
               <FilePath>.\Board\IERG_Game_Logic.h</FilePath>
             </File>
+            <File>
+              <FileName>IERG3810_interupt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Board\IERG3810_interupt.c</FilePath>
+            </File>
+            <File>
+              <FileName>IERG3810_interupt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Board\IERG3810_interupt.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
