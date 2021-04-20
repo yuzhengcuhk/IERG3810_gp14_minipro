@@ -10,7 +10,7 @@
 #include "rtc.h"
 #include "stdlib.h"
 
-void snake_direction(void);
+void direction_controller(void);
 void start_page();
 void start_game();
 void gameover(u8 socre_buf[]);

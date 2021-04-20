@@ -235,21 +235,21 @@ Section Cross References
     usart.o(.data) refers (Special) to use_no_semi_2.o(.text) for __use_no_semihosting
     ierg_game_logic.o(i.TIM3_IRQHandler) refers to stm32f10x_tim.o(i.TIM_GetITStatus) for TIM_GetITStatus
     ierg_game_logic.o(i.TIM3_IRQHandler) refers to stm32f10x_tim.o(i.TIM_ClearITPendingBit) for TIM_ClearITPendingBit
-    ierg_game_logic.o(i.TIM3_IRQHandler) refers to ierg_game_logic.o(i.snake_direction) for snake_direction
+    ierg_game_logic.o(i.TIM3_IRQHandler) refers to ierg_game_logic.o(i.direction_controller) for direction_controller
+    ierg_game_logic.o(i.direction_controller) refers to ierg3810_key_controller.o(i.keyscan) for keyscan
+    ierg_game_logic.o(i.direction_controller) refers to ierg_game_logic.o(.data) for key
+    ierg_game_logic.o(i.direction_controller) refers to ierg_game_logic.o(.bss) for snake
     ierg_game_logic.o(i.gameover) refers to ierg3810_lcd_controller.o(i.TFT_ClearScreen) for TFT_ClearScreen
     ierg_game_logic.o(i.gameover) refers to ierg3810_led.o(i.IERG3810_TFTLCD_ShowChar) for IERG3810_TFTLCD_ShowChar
     ierg_game_logic.o(i.gameover) refers to ierg3810_delay.o(i.delay_ms) for delay_ms
     ierg_game_logic.o(i.gameover) refers to ierg_game_logic.o(i.start_page) for start_page
-    ierg_game_logic.o(i.snake_direction) refers to ierg3810_key_controller.o(i.keyscan) for keyscan
-    ierg_game_logic.o(i.snake_direction) refers to ierg_game_logic.o(.data) for key
-    ierg_game_logic.o(i.snake_direction) refers to ierg_game_logic.o(.bss) for snake
     ierg_game_logic.o(i.start_game) refers to ierg3810_led.o(i.IERG3810_TFTLCD_FillRectangle) for IERG3810_TFTLCD_FillRectangle
     ierg_game_logic.o(i.start_game) refers to rand.o(.text) for srand
     ierg_game_logic.o(i.start_game) refers to rand.o(.emb_text) for rand
     ierg_game_logic.o(i.start_game) refers to ierg3810_game_ui.o(i.GUI_Box) for GUI_Box
     ierg_game_logic.o(i.start_game) refers to ierg3810_led.o(i.IERG3810_TFTLCD_ShowChar) for IERG3810_TFTLCD_ShowChar
-    ierg_game_logic.o(i.start_game) refers to ierg_game_logic.o(i.gameover) for gameover
     ierg_game_logic.o(i.start_game) refers to ierg3810_delay.o(i.delay_ms) for delay_ms
+    ierg_game_logic.o(i.start_game) refers to ierg_game_logic.o(i.gameover) for gameover
     ierg_game_logic.o(i.start_game) refers to ierg_game_logic.o(.bss) for snake
     ierg_game_logic.o(i.start_game) refers to ierg_game_logic.o(.data) for game
     ierg_game_logic.o(i.start_game) refers to rtc.o(.bss) for calendar
@@ -1168,17 +1168,17 @@ Image Symbol Table
     i.button_init                            0x0800173c   Section        0  ierg3810_key_controller.o(i.button_init)
     i.delay_init                             0x08001780   Section        0  ierg3810_delay.o(i.delay_init)
     i.delay_ms                               0x080017c4   Section        0  ierg3810_delay.o(i.delay_ms)
-    i.fputc                                  0x08001810   Section        0  usart.o(i.fputc)
-    i.gameover                               0x0800182c   Section        0  ierg_game_logic.o(i.gameover)
-    i.keyscan                                0x080018ec   Section        0  ierg3810_key_controller.o(i.keyscan)
-    i.main                                   0x080019b0   Section        0  main.o(i.main)
-    i.rtc_init                               0x08001a10   Section        0  rtc.o(i.rtc_init)
-    i.snake_direction                        0x08001ab0   Section        0  ierg_game_logic.o(i.snake_direction)
-    i.start_game                             0x08001b40   Section        0  ierg_game_logic.o(i.start_game)
-    i.start_page                             0x08001f40   Section        0  ierg_game_logic.o(i.start_page)
-    i.uart_init                              0x08002090   Section        0  usart.o(i.uart_init)
-    .constdata                               0x08002130   Section     1520  ierg3810_led.o(.constdata)
-    .constdata                               0x08002720   Section       24  rtc.o(.constdata)
+    i.direction_controller                   0x08001810   Section        0  ierg_game_logic.o(i.direction_controller)
+    i.fputc                                  0x080018a0   Section        0  usart.o(i.fputc)
+    i.gameover                               0x080018bc   Section        0  ierg_game_logic.o(i.gameover)
+    i.keyscan                                0x0800197c   Section        0  ierg3810_key_controller.o(i.keyscan)
+    i.main                                   0x08001a40   Section        0  main.o(i.main)
+    i.rtc_init                               0x08001a9c   Section        0  rtc.o(i.rtc_init)
+    i.start_game                             0x08001b3c   Section        0  ierg_game_logic.o(i.start_game)
+    i.start_page                             0x08001f4c   Section        0  ierg_game_logic.o(i.start_page)
+    i.uart_init                              0x0800209c   Section        0  usart.o(i.uart_init)
+    .constdata                               0x0800213c   Section     1520  ierg3810_led.o(.constdata)
+    .constdata                               0x0800272c   Section       24  rtc.o(.constdata)
     .data                                    0x20000000   Section       20  stm32f10x_rcc.o(.data)
     APBAHBPrescTable                         0x20000000   Data          16  stm32f10x_rcc.o(.data)
     ADCPrescTable                            0x20000010   Data           4  stm32f10x_rcc.o(.data)
@@ -1196,14 +1196,14 @@ Image Symbol Table
     start                                    0x2000004c   Data           1  ierg_game_logic.o(.data)
     .bss                                     0x20000050   Section       10  rtc.o(.bss)
     .bss                                     0x2000005a   Section      200  usart.o(.bss)
-    .bss                                     0x20000122   Section       44  ierg_game_logic.o(.bss)
-    .bss                                     0x20000150   Section      228  rand.o(.bss)
-    .bss                                     0x20000234   Section       96  libspace.o(.bss)
-    HEAP                                     0x20000298   Section      512  startup_stm32f10x_hd.o(HEAP)
-    Heap_Mem                                 0x20000298   Data         512  startup_stm32f10x_hd.o(HEAP)
-    STACK                                    0x20000498   Section     1024  startup_stm32f10x_hd.o(STACK)
-    Stack_Mem                                0x20000498   Data        1024  startup_stm32f10x_hd.o(STACK)
-    __initial_sp                             0x20000898   Data           0  startup_stm32f10x_hd.o(STACK)
+    .bss                                     0x20000122   Section      204  ierg_game_logic.o(.bss)
+    .bss                                     0x200001f0   Section      228  rand.o(.bss)
+    .bss                                     0x200002d4   Section       96  libspace.o(.bss)
+    HEAP                                     0x20000338   Section      512  startup_stm32f10x_hd.o(HEAP)
+    Heap_Mem                                 0x20000338   Data         512  startup_stm32f10x_hd.o(HEAP)
+    STACK                                    0x20000538   Section     1024  startup_stm32f10x_hd.o(STACK)
+    Stack_Mem                                0x20000538   Data        1024  startup_stm32f10x_hd.o(STACK)
+    __initial_sp                             0x20000938   Data           0  startup_stm32f10x_hd.o(STACK)
 
     Global Symbols
 
@@ -1456,20 +1456,20 @@ Image Symbol Table
     button_init                              0x0800173d   Thumb Code    60  ierg3810_key_controller.o(i.button_init)
     delay_init                               0x08001781   Thumb Code    50  ierg3810_delay.o(i.delay_init)
     delay_ms                                 0x080017c5   Thumb Code    72  ierg3810_delay.o(i.delay_ms)
-    fputc                                    0x08001811   Thumb Code    24  usart.o(i.fputc)
-    gameover                                 0x0800182d   Thumb Code   168  ierg_game_logic.o(i.gameover)
-    keyscan                                  0x080018ed   Thumb Code   184  ierg3810_key_controller.o(i.keyscan)
-    main                                     0x080019b1   Thumb Code    92  main.o(i.main)
-    rtc_init                                 0x08001a11   Thumb Code   158  rtc.o(i.rtc_init)
-    snake_direction                          0x08001ab1   Thumb Code   132  ierg_game_logic.o(i.snake_direction)
-    start_game                               0x08001b41   Thumb Code  1024  ierg_game_logic.o(i.start_game)
-    start_page                               0x08001f41   Thumb Code   274  ierg_game_logic.o(i.start_page)
-    uart_init                                0x08002091   Thumb Code   152  usart.o(i.uart_init)
-    asc2_1608                                0x08002130   Data        1520  ierg3810_led.o(.constdata)
-    table_week                               0x08002720   Data          12  rtc.o(.constdata)
-    mon_table                                0x0800272c   Data          12  rtc.o(.constdata)
-    Region$$Table$$Base                      0x08002738   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08002758   Number         0  anon$$obj.o(Region$$Table)
+    direction_controller                     0x08001811   Thumb Code   132  ierg_game_logic.o(i.direction_controller)
+    fputc                                    0x080018a1   Thumb Code    24  usart.o(i.fputc)
+    gameover                                 0x080018bd   Thumb Code   168  ierg_game_logic.o(i.gameover)
+    keyscan                                  0x0800197d   Thumb Code   184  ierg3810_key_controller.o(i.keyscan)
+    main                                     0x08001a41   Thumb Code    88  main.o(i.main)
+    rtc_init                                 0x08001a9d   Thumb Code   158  rtc.o(i.rtc_init)
+    start_game                               0x08001b3d   Thumb Code  1040  ierg_game_logic.o(i.start_game)
+    start_page                               0x08001f4d   Thumb Code   274  ierg_game_logic.o(i.start_page)
+    uart_init                                0x0800209d   Thumb Code   152  usart.o(i.uart_init)
+    asc2_1608                                0x0800213c   Data        1520  ierg3810_led.o(.constdata)
+    table_week                               0x0800272c   Data          12  rtc.o(.constdata)
+    mon_table                                0x08002738   Data          12  rtc.o(.constdata)
+    Region$$Table$$Base                      0x08002744   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08002764   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000014   Data           4  system_stm32f10x.o(.data)
     AHBPrescTable                            0x20000018   Data          16  system_stm32f10x.o(.data)
     rtc_data                                 0x2000002e   Data           7  rtc.o(.data)
@@ -1485,10 +1485,10 @@ Image Symbol Table
     game                                     0x20000048   Data           4  ierg_game_logic.o(.data)
     calendar                                 0x20000050   Data          10  rtc.o(.bss)
     USART_RX_BUF                             0x2000005a   Data         200  usart.o(.bss)
-    snake                                    0x20000122   Data          44  ierg_game_logic.o(.bss)
-    _random_number_data                      0x20000150   Data         228  rand.o(.bss)
-    __libspace_start                         0x20000234   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x20000294   Data           0  libspace.o(.bss)
+    snake                                    0x20000122   Data         204  ierg_game_logic.o(.bss)
+    _random_number_data                      0x200001f0   Data         228  rand.o(.bss)
+    __libspace_start                         0x200002d4   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x20000334   Data           0  libspace.o(.bss)
 
 
 
@@ -1498,9 +1498,9 @@ Memory Map of the image
 
   Image Entry point : 0x0800020d
 
-  Load Region LR_1 (Base: 0x08000000, Size: 0x000027a8, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x08000000, Size: 0x000027b4, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Base: 0x08000000, Size: 0x00002758, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Base: 0x08000000, Size: 0x00002764, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1656,19 +1656,19 @@ Memory Map of the image
     0x0800173c   0x00000044   Code   RO         3332    i.button_init       ierg3810_key_controller.o
     0x08001780   0x00000044   Code   RO         3360    i.delay_init        ierg3810_delay.o
     0x080017c4   0x0000004c   Code   RO         3361    i.delay_ms          ierg3810_delay.o
-    0x08001810   0x0000001c   Code   RO         3609    i.fputc             usart.o
-    0x0800182c   0x000000c0   Code   RO         3649    i.gameover          ierg_game_logic.o
-    0x080018ec   0x000000c4   Code   RO         3333    i.keyscan           ierg3810_key_controller.o
-    0x080019b0   0x00000060   Code   RO         3721    i.main              main.o
-    0x08001a10   0x0000009e   Code   RO         3495    i.rtc_init          rtc.o
-    0x08001aae   0x00000002   PAD
-    0x08001ab0   0x00000090   Code   RO         3650    i.snake_direction   ierg_game_logic.o
-    0x08001b40   0x00000400   Code   RO         3651    i.start_game        ierg_game_logic.o
-    0x08001f40   0x00000150   Code   RO         3652    i.start_page        ierg_game_logic.o
-    0x08002090   0x000000a0   Code   RO         3610    i.uart_init         usart.o
-    0x08002130   0x000005f0   Data   RO         3232    .constdata          ierg3810_led.o
-    0x08002720   0x00000018   Data   RO         3497    .constdata          rtc.o
-    0x08002738   0x00000020   Data   RO         3995    Region$$Table       anon$$obj.o
+    0x08001810   0x00000090   Code   RO         3649    i.direction_controller  ierg_game_logic.o
+    0x080018a0   0x0000001c   Code   RO         3609    i.fputc             usart.o
+    0x080018bc   0x000000c0   Code   RO         3650    i.gameover          ierg_game_logic.o
+    0x0800197c   0x000000c4   Code   RO         3333    i.keyscan           ierg3810_key_controller.o
+    0x08001a40   0x0000005c   Code   RO         3721    i.main              main.o
+    0x08001a9c   0x0000009e   Code   RO         3495    i.rtc_init          rtc.o
+    0x08001b3a   0x00000002   PAD
+    0x08001b3c   0x00000410   Code   RO         3651    i.start_game        ierg_game_logic.o
+    0x08001f4c   0x00000150   Code   RO         3652    i.start_page        ierg_game_logic.o
+    0x0800209c   0x000000a0   Code   RO         3610    i.uart_init         usart.o
+    0x0800213c   0x000005f0   Data   RO         3232    .constdata          ierg3810_led.o
+    0x0800272c   0x00000018   Data   RO         3497    .constdata          rtc.o
+    0x08002744   0x00000020   Data   RO         3995    Region$$Table       anon$$obj.o
 
 
     Execution Region ER_RW (Base: 0x20000000, Size: 0x00000050, Max: 0xffffffff, ABSOLUTE)
@@ -1686,19 +1686,19 @@ Memory Map of the image
     0x20000042   0x0000000b   Data   RW         3654    .data               ierg_game_logic.o
 
 
-    Execution Region ER_ZI (Base: 0x20000050, Size: 0x00000848, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Base: 0x20000050, Size: 0x000008e8, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000050   0x0000000a   Zero   RW         3496    .bss                rtc.o
     0x2000005a   0x000000c8   Zero   RW         3611    .bss                usart.o
-    0x20000122   0x0000002c   Zero   RW         3653    .bss                ierg_game_logic.o
-    0x2000014e   0x00000002   PAD
-    0x20000150   0x000000e4   Zero   RW         3796    .bss                c_w.l(rand.o)
-    0x20000234   0x00000060   Zero   RW         3929    .bss                c_w.l(libspace.o)
-    0x20000294   0x00000004   PAD
-    0x20000298   0x00000200   Zero   RW         3124    HEAP                startup_stm32f10x_hd.o
-    0x20000498   0x00000400   Zero   RW         3123    STACK               startup_stm32f10x_hd.o
+    0x20000122   0x000000cc   Zero   RW         3653    .bss                ierg_game_logic.o
+    0x200001ee   0x00000002   PAD
+    0x200001f0   0x000000e4   Zero   RW         3796    .bss                c_w.l(rand.o)
+    0x200002d4   0x00000060   Zero   RW         3929    .bss                c_w.l(libspace.o)
+    0x20000334   0x00000004   PAD
+    0x20000338   0x00000200   Zero   RW         3124    HEAP                startup_stm32f10x_hd.o
+    0x20000538   0x00000400   Zero   RW         3123    STACK               startup_stm32f10x_hd.o
 
 
 ==============================================================================
@@ -1708,31 +1708,31 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-        72          8          0          0          0        460   ierg3810_buzzer.o
-       144         22          0          4          0       1244   ierg3810_delay.o
-        92          0          0          0          0        762   ierg3810_game_ui.o
-       264         20          0          1          0       1252   ierg3810_key_controller.o
-        52          0          0          0          0        614   ierg3810_lcd_controller.o
-       866         50       1520          0          0       4998   ierg3810_led.o
-      1728        130          0         11         44       4387   ierg_game_logic.o
-        96          4          0          0          0        483   main.o
-       172         22          0          0          0       1945   misc.o
-       948         78         24         10         10       5609   rtc.o
-        64         26        304          0       1536        828   startup_stm32f10x_hd.o
-        72         10          0          0          0       2572   stm32f10x_bkp.o
-       304          0          0          0          0       3500   stm32f10x_gpio.o
-        26          0          0          0          0     256486   stm32f10x_it.o
-        12          6          0          0          0        486   stm32f10x_pwr.o
-       368         54          0         20          0       6258   stm32f10x_rcc.o
-       260         48          0          0          0       4864   stm32f10x_rtc.o
-       274         42          0          0          0       4949   stm32f10x_tim.o
-       408          6          0          0          0       4794   stm32f10x_usart.o
-       328         28          0         20          0       2129   system_stm32f10x.o
-       292         18          0          4          0       1484   tim.o
-       330         26          0          6        200       4152   usart.o
+        72          8          0          0          0        464   ierg3810_buzzer.o
+       144         22          0          4          0       1260   ierg3810_delay.o
+        92          0          0          0          0        766   ierg3810_game_ui.o
+       264         20          0          1          0       1264   ierg3810_key_controller.o
+        52          0          0          0          0        622   ierg3810_lcd_controller.o
+       866         50       1520          0          0       5058   ierg3810_led.o
+      1744        128          0         11        204       4492   ierg_game_logic.o
+        92          4          0          0          0        487   main.o
+       172         22          0          0          0       1973   misc.o
+       948         78         24         10         10       5661   rtc.o
+        64         26        304          0       1536        836   startup_stm32f10x_hd.o
+        72         10          0          0          0       2588   stm32f10x_bkp.o
+       304          0          0          0          0       3528   stm32f10x_gpio.o
+        26          0          0          0          0     256570   stm32f10x_it.o
+        12          6          0          0          0        490   stm32f10x_pwr.o
+       368         54          0         20          0       6318   stm32f10x_rcc.o
+       260         48          0          0          0       4932   stm32f10x_rtc.o
+       274         42          0          0          0       5005   stm32f10x_tim.o
+       408          6          0          0          0       4826   stm32f10x_usart.o
+       328         28          0         20          0       2161   system_stm32f10x.o
+       292         18          0          4          0       1500   tim.o
+       330         26          0          6        200       4188   usart.o
 
     ----------------------------------------------------------------------
-      7184        598       1880         80       1792     314256   Object Totals
+      7196        596       1880         80       1952     314989   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         12          0          0          4          2          0   (incl. Padding)
 
@@ -1792,15 +1792,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      8192        658       1880         80       2120     310824   Grand Totals
-      8192        658       1880         80       2120     310824   ELF Image Totals
-      8192        658       1880         80          0          0   ROM Totals
+      8204        656       1880         80       2280     311557   Grand Totals
+      8204        656       1880         80       2280     311557   ELF Image Totals
+      8204        656       1880         80          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                10072 (   9.84kB)
-    Total RW  Size (RW Data + ZI Data)              2200 (   2.15kB)
-    Total ROM Size (Code + RO Data + RW Data)      10152 (   9.91kB)
+    Total RO  Size (Code + RO Data)                10084 (   9.85kB)
+    Total RW  Size (RW Data + ZI Data)              2360 (   2.30kB)
+    Total ROM Size (Code + RO Data + RW Data)      10164 (   9.93kB)
 
 ==============================================================================
 

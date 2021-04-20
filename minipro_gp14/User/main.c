@@ -24,7 +24,6 @@ int main(void)
 	button_init();
 	delay_init();
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
-	button_init();
 	IERG_3810_Buzzer_Init();
 	GPIOB->BRR = 1 << 8;
 	IERG3810_TFTLCD_Init();

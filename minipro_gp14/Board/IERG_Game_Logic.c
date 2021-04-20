@@ -6,25 +6,25 @@ u8 key;
 u8 start=0;
 u8 speed = 100; //easy:300 normal:100 hard:50 
 
-struct Snake
+struct Snake_data
 {
-	s16 X[Max_Lof_snake];
-	s16 Y[Max_Lof_snake];
+	s16 X_coordinate[Max_Lof_snake];
+	s16 Y_coordinate[Max_Lof_snake];
 	u8 Long;
 	u8 Life;
 	u8 Direction; 
 
 }snake;
 
-struct Food
+struct Food_data
 {
-	u8 X;
-	u8 Y;
+	u8 food_X;
+	u8 food_Y;
 	u8 Yes;
 }food;
 
 
-struct Game
+struct Game_data
 {
 	u16 Score;
 	u8 Life;
@@ -91,7 +91,7 @@ void gameover(u8 score_tran[])
 }
 
 
-void snake_direction(void)
+void direction_controller(void)
 {	
 	static u8 start=0;
 	key=keyscan(0);	
@@ -124,7 +124,7 @@ void TIM3_IRQHandler(void)
 	if(TIM_GetITStatus(TIM3,TIM_IT_Update)!= RESET)
 	{
 		TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
-		snake_direction();
+		direction_controller();
 	}
 }  
 
@@ -150,8 +150,8 @@ void start_game()
 	food.Yes = 1;
 	
 	//snake_init_position
-	snake.X[0]=120;snake.Y[0]=168;
-	snake.X[1]=120;snake.Y[1]=168;
+	snake.X_coordinate[0]=120;snake.Y_coordinate[0]=168;
+	snake.X_coordinate[1]=120;snake.Y_coordinate[1]=168;
 	
 	
 	IERG3810_TFTLCD_FillRectangle(WHITE,1,240,1,320);
@@ -166,12 +166,12 @@ void start_game()
 				while(1)
 				{
 					srand(calendar.sec);
-					food.X=60 + (rand()%(10))*12;
-					food.Y=84 + (rand()%(14))*12;
+					food.food_X=60 + (rand()%(10))*12;
+					food.food_Y=84 + (rand()%(14))*12;
 					
 					for(n=0;n<snake.Long;n++)
 					{
-						if(food.X==snake.X[n]&&food.Y==snake.Y[n])
+						if(food.food_X==snake.X_coordinate[n]&&food.food_Y==snake.Y_coordinate[n])
 						break;
 					}
 					if(n==snake.Long) {food.Yes=0;}
@@ -181,12 +181,12 @@ void start_game()
 			
 			//Make the food appear
 			if(food.Yes==0)
-			{	GUI_Box(food.X,food.Y,food.X+10,food.Y+10,CYAN);}
+			{	GUI_Box(food.food_X,food.food_Y,food.food_X+10,food.food_Y+10,CYAN);}
 
 			//snake eats a food 
-			if(snake.X[0]==food.X&&snake.Y[0]==food.Y)
+			if(snake.X_coordinate[0]==food.food_X&&snake.Y_coordinate[0]==food.food_Y)
 			{
-				GUI_Box(food.X,food.Y,food.X+10,food.Y+10,WHITE);
+				GUI_Box(food.food_X,food.food_Y,food.food_X+10,food.food_Y+10,WHITE);
 				if(!(snake.Long==Max_Lof_snake))
 				snake.Long++;
 				game.Score+=1;
@@ -210,24 +210,24 @@ void start_game()
 			//struct the snake with the long
 			for(i=snake.Long-1;i>0;i--)
 			{
-				snake.X[i]=snake.X[i-1];
-				snake.Y[i]=snake.Y[i-1];
+				snake.X_coordinate[i]=snake.X_coordinate[i-1];
+				snake.Y_coordinate[i]=snake.Y_coordinate[i-1];
 			}
 			
 			//locate the snake with direction
 			switch(snake.Direction)
 			{
-				case 1:snake.X[0]+=12;break;
-				case 2:snake.X[0]-=12;break;
-				case 3:snake.Y[0]-=12;break;
-				case 4:snake.Y[0]+=12;break;
+				case 1:snake.X_coordinate[0]+=12;break;
+				case 2:snake.X_coordinate[0]-=12;break;
+				case 3:snake.Y_coordinate[0]-=12;break;
+				case 4:snake.Y_coordinate[0]+=12;break;
 			}
 				
 			//make the snake appear
-			for(i=0;i<snake.Long;i++) { GUI_Box(snake.X[i],snake.Y[i],snake.X[i]+10,snake.Y[i]+10,YELLOW);}
+			for(i=0;i<snake.Long;i++) { GUI_Box(snake.X_coordinate[i],snake.Y_coordinate[i],snake.X_coordinate[i]+10,snake.Y_coordinate[i]+10,YELLOW);}
 			
 			//make the tail of the snake disappear
-			GUI_Box(snake.X[snake.Long-1],snake.Y[snake.Long-1],snake.X[snake.Long-1]+10,snake.Y[snake.Long-1]+10,WHITE);
+			GUI_Box(snake.X_coordinate[snake.Long-1],snake.Y_coordinate[snake.Long-1],snake.X_coordinate[snake.Long-1]+10,snake.Y_coordinate[snake.Long-1]+10,WHITE);
 			//End of snake
 			
 				
@@ -237,12 +237,12 @@ void start_game()
 				
 			/*-----------------Life Logic------------------*/
 			//the snake out of the boundary, user will lose the game
-			if(snake.X[0]<0||snake.X[0]>220||snake.Y[0]<0||snake.Y[0]>300) {snake.Life=0;}
+			if(snake.X_coordinate[0]<0||snake.X_coordinate[0]>220||snake.Y_coordinate[0]<0||snake.Y_coordinate[0]>300) {snake.Life=0;}
 			
 		  	//the snake hit its' body, life -1
 			for(i=3;i<snake.Long;i++)
 			{
-				if(snake.X[i]==snake.X[0]&&snake.Y[i]==snake.Y[0]) 
+				if(snake.X_coordinate[i]==snake.X_coordinate[0]&&snake.Y_coordinate[i]==snake.Y_coordinate[0]) 
 					{
 						game.Life-=1;
 						GPIOB->BSRR = 1 << 8;
