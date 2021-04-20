@@ -1,6 +1,7 @@
 #include "stm32f10x.h"
 #include "IERG3810_LED.h"
 #include "FONT.H"
+#include "TFONT.H"
 
 // put your procedure and code here
 void IERG3810_LED_Init(void){
@@ -160,6 +161,38 @@ void IERG3810_TFTLCD_ShowChar(u16 x, u16 y, u8 ascii, u16 color, u16 bgcolor)
 			for (index = 0; index < length; index++)
 			{
 				if ((asc2_1608[ascii][index*2+1-j]>>i) & 0x01) IERG3810_TFTLCD_WrData(color);
+				else IERG3810_TFTLCD_WrData(bgcolor);
+			}
+		}
+	}
+}
+
+void IERG3810_TFTLCD_ShowTChar(u16 x, u16 y, u8 Tfont, u16 color, u16 bgcolor)
+{
+	u8 i, j;
+	u8 index;
+	u8 height=64, length=8;
+	if(Tfont<1 || Tfont >4) return;
+	//Tfont -=32;
+	IERG3810_TFTLCD_WrReg(0x2A);
+		IERG3810_TFTLCD_WrData(x>>8);
+		IERG3810_TFTLCD_WrData(x & 0xFF);
+		IERG3810_TFTLCD_WrData((length + x - 1) >> 8);
+		IERG3810_TFTLCD_WrData((length + x  - 1) & 0xFF);
+	IERG3810_TFTLCD_WrReg(0x2B);
+		IERG3810_TFTLCD_WrData(y>>8);
+		IERG3810_TFTLCD_WrData(y & 0xFF);
+		IERG3810_TFTLCD_WrData((height + y - 1) >> 8);
+		IERG3810_TFTLCD_WrData((height + y - 1) & 0xFF);
+	IERG3810_TFTLCD_WrReg(0x2C);
+	
+	for (j = 0; j < height/32; j++)
+	{
+		for (i = 0; i < height/8; i++)
+		{
+			for (index = 0; index < length; index++)
+			{
+				if ((ARROW_L[Tfont][index*2+1-j]>>i) & 0x01) IERG3810_TFTLCD_WrData(color);
 				else IERG3810_TFTLCD_WrData(bgcolor);
 			}
 		}

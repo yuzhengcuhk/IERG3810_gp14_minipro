@@ -40,6 +40,7 @@ void start_page(void)
 	char start[] = "New game start at:";
 	char CUID1[] = "1155095162";
 	char CUID2[] = "1155126633";
+
 	GPIOB->BRR = 1 << 8;
 	delay_ms(300);
 	TFT_ClearScreen(WHITE);
@@ -73,7 +74,7 @@ void gameover(u8 score_tran[])
 	char score[] = "Your score:";
 	
 	TFT_ClearScreen(WHITE);
-	
+
 	for(i=0;i<11;i++)
 		{IERG3810_TFTLCD_ShowChar(i*9+70, 180, score[i], 0, WHITE);}
 		
@@ -133,7 +134,10 @@ void start_game()
 {
 	u16 i,n;
 	u16 counter = 0;
-
+	
+	char life_text[] = "life:";
+	char score_text[] = "score:";
+	
 	u8 life[2];
 	u8 score[4];
 	
@@ -195,10 +199,14 @@ void start_game()
 				score[2]='\0';
 				food.Yes=1; //for remaking a food 
 			}
+
+			for(i=0;i<6;i++)
+			{IERG3810_TFTLCD_ShowChar(i*9+5, 300, score_text[i], 0, WHITE);}
+			
 			for(i=0;i<2;i++)
 			{
 				if(score[i] == '0' && (i == 0)) {;}
-				else{IERG3810_TFTLCD_ShowChar(i*10, 300, score[i], 0, WHITE);}
+				else{IERG3810_TFTLCD_ShowChar(i*10+50, 300, score[i], 0, WHITE);}
 			}
 			//End of food
 			
@@ -261,6 +269,10 @@ void start_game()
 			//life display
 			life[0]=game.Life%10+0x30;
 			life[1]='\0';
+			
+			for(i=0;i<5;i++)
+			{IERG3810_TFTLCD_ShowChar(i*9+166, 300, life_text[i], 0, WHITE);}
+			
 			IERG3810_TFTLCD_ShowChar(220, 300, life[0], 0, WHITE);
 			//End of life
 			

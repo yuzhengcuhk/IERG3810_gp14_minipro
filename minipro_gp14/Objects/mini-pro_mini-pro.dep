@@ -791,7 +791,7 @@ I (.\Fw_lib\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Fw_lib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Fw_lib\inc\misc.h)(0x4D783BB4)
 I (Board\IERG3810_KEY.h)(0x60113843)
-F (.\Board\IERG3810_LED.c)(0x607D2750)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\Board -I.\Core -I.\Fw_lib\inc -I.\User -I.\Board\mini_pro_lib-I C:\Users\Jacob-Lee\Documents\github\IERG3810_gp14_minipro\minipro_gp14\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="515" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o .\objects\ierg3810_led.o --omf_browse .\objects\ierg3810_led.crf --depend .\objects\ierg3810_led.d)
+F (.\Board\IERG3810_LED.c)(0x607E86E8)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\Board -I.\Core -I.\Fw_lib\inc -I.\User -I.\Board\mini_pro_lib-I C:\Users\Jacob-Lee\Documents\github\IERG3810_gp14_minipro\minipro_gp14\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="515" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o .\objects\ierg3810_led.o --omf_browse .\objects\ierg3810_led.crf --depend .\objects\ierg3810_led.d)
 I (.\Core\stm32f10x.h)(0x4D783CB4)
 I (.\Core\core_cm3.h)(0x4D523B58)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54C245B8)
@@ -820,8 +820,9 @@ I (.\Fw_lib\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (.\Fw_lib\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Fw_lib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Fw_lib\inc\misc.h)(0x4D783BB4)
-I (Board\IERG3810_LED.h)(0x607BC195)
+I (Board\IERG3810_LED.h)(0x607E84FC)
 I (Board\FONT.H)(0x60239602)
+I (.\Board\mini_pro_lib\TFONT.H)(0x5409CB74)
 F (.\Board\IERG3810_USART_CLOKC_TREE_INIT.c)(0x601A6BC7)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\Board -I.\Core -I.\Fw_lib\inc -I.\User -I.\Board\mini_pro_lib-I C:\Users\Jacob-Lee\Documents\github\IERG3810_gp14_minipro\minipro_gp14\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="515" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o .\objects\ierg3810_usart_clokc_tree_init.o --omf_browse .\objects\ierg3810_usart_clokc_tree_init.crf --depend .\objects\ierg3810_usart_clokc_tree_init.d)
 I (.\Core\stm32f10x.h)(0x4D783CB4)
 I (.\Core\core_cm3.h)(0x4D523B58)
@@ -1010,7 +1011,7 @@ I (.\Fw_lib\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Fw_lib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Fw_lib\inc\misc.h)(0x4D783BB4)
 I (Board\mini_pro_lib\IERG3810_LCD_Controller.h)(0x607BE01E)
-I (.\Board\IERG3810_LED.h)(0x607BC195)
+I (.\Board\IERG3810_LED.h)(0x607E84FC)
 F (.\Board\mini_pro_lib\IERG3810_Game_UI.h)(0x607D17D9)()
 F (.\Board\mini_pro_lib\IERG3810_LCD_Controller.c)(0x607D1863)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\Board -I.\Core -I.\Fw_lib\inc -I.\User -I.\Board\mini_pro_lib-I C:\Users\Jacob-Lee\Documents\github\IERG3810_gp14_minipro\minipro_gp14\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="515" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o .\objects\ierg3810_lcd_controller.o --omf_browse .\objects\ierg3810_lcd_controller.crf --depend .\objects\ierg3810_lcd_controller.d)
 I (Board\mini_pro_lib\IERG3810_LCD_Controller.h)(0x607BE01E)
@@ -1042,7 +1043,7 @@ I (.\Fw_lib\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (.\Fw_lib\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Fw_lib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Fw_lib\inc\misc.h)(0x4D783BB4)
-I (.\Board\IERG3810_LED.h)(0x607BC195)
+I (.\Board\IERG3810_LED.h)(0x607E84FC)
 F (.\Board\mini_pro_lib\IERG3810_LCD_Controller.h)(0x607BE01E)()
 F (.\Board\mini_pro_lib\rtc.c)(0x607D15CE)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\Board -I.\Core -I.\Fw_lib\inc -I.\User -I.\Board\mini_pro_lib-I C:\Users\Jacob-Lee\Documents\github\IERG3810_gp14_minipro\minipro_gp14\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="515" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o .\objects\rtc.o --omf_browse .\objects\rtc.crf --depend .\objects\rtc.d)
 I (Board\mini_pro_lib\rtc.h)(0x607D174B)
@@ -1180,12 +1181,12 @@ F (.\Board\mini_pro_lib\usart.h)(0x607C0881)()
 F (.\Board\CFONT.H)(0x6023ACA9)()
 F (.\Board\IERG3810_Buzzer.h)(0x60113852)()
 F (.\Board\IERG3810_KEY.h)(0x60113843)()
-F (.\Board\IERG3810_LED.h)(0x607BC195)()
+F (.\Board\IERG3810_LED.h)(0x607E84FC)()
 F (.\Board\IERG3810_USART_CLOKC_TREE_INIT.h)(0x601A6AF7)()
 F (.\Board\IERG3810_USART_PRINT.h)(0x601A6ABE)()
 F (.\Board\IERG3810_USART1_INIT.h)(0x601A6A85)()
 F (.\Board\IERG3810_USART2_INIT.h)(0x601A6A07)()
-F (.\Board\IERG_Game_Logic.c)(0x607E807E)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\Board -I.\Core -I.\Fw_lib\inc -I.\User -I.\Board\mini_pro_lib-I C:\Users\Jacob-Lee\Documents\github\IERG3810_gp14_minipro\minipro_gp14\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="515" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o .\objects\ierg_game_logic.o --omf_browse .\objects\ierg_game_logic.crf --depend .\objects\ierg_game_logic.d)
+F (.\Board\IERG_Game_Logic.c)(0x607E8932)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\Board -I.\Core -I.\Fw_lib\inc -I.\User -I.\Board\mini_pro_lib-I C:\Users\Jacob-Lee\Documents\github\IERG3810_gp14_minipro\minipro_gp14\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="515" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o .\objects\ierg_game_logic.o --omf_browse .\objects\ierg_game_logic.crf --depend .\objects\ierg_game_logic.d)
 I (Board\IERG_Game_Logic.h)(0x607E7FCC)
 I (.\Board\mini_pro_lib\IERG3810_System_Init.h)(0x607BDDD2)
 I (.\Core\stm32f10x.h)(0x4D783CB4)
@@ -1220,7 +1221,7 @@ I (.\Board\mini_pro_lib\IERG3810_key_Controller.h)(0x607D17A3)
 I (.\Board\mini_pro_lib\IERG3810_Delay.h)(0x607C0863)
 I (.\Board\mini_pro_lib\IERG3810_LCD_Controller.h)(0x607BE01E)
 I (.\Board\mini_pro_lib\IERG3810_Game_UI.h)(0x607D17D9)
-I (Board\IERG3810_LED.h)(0x607BC195)
+I (Board\IERG3810_LED.h)(0x607E84FC)
 I (Board\IERG3810_KEY.h)(0x60113843)
 I (.\Board\mini_pro_lib\usart.h)(0x607C0881)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x54C245B8)
@@ -1228,7 +1229,7 @@ I (.\Board\mini_pro_lib\tim.h)(0x607D173F)
 I (.\Board\mini_pro_lib\rtc.h)(0x607D174B)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x54C245B8)
 F (.\Board\IERG_Game_Logic.h)(0x607E7FCC)()
-F (.\User\main.c)(0x607E7FA6)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\Board -I.\Core -I.\Fw_lib\inc -I.\User -I.\Board\mini_pro_lib-I C:\Users\Jacob-Lee\Documents\github\IERG3810_gp14_minipro\minipro_gp14\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="515" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\User\main.c)(0x607E8702)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\Board -I.\Core -I.\Fw_lib\inc -I.\User -I.\Board\mini_pro_lib-I C:\Users\Jacob-Lee\Documents\github\IERG3810_gp14_minipro\minipro_gp14\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="515" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\Board\mini_pro_lib\IERG3810_System_Init.h)(0x607BDDD2)
 I (.\Core\stm32f10x.h)(0x4D783CB4)
 I (.\Core\core_cm3.h)(0x4D523B58)
@@ -1266,7 +1267,7 @@ I (User\IERG3810_LED.h)(0x607ABF94)
 I (User\IERG3810_KEY.h)(0x60113843)
 I (User\IERG3810_Buzzer.h)(0x60113852)
 I (.\Board\IERG_Game_Logic.h)(0x607E7FCC)
-I (.\Board\IERG3810_LED.h)(0x607BC195)
+I (.\Board\IERG3810_LED.h)(0x607E84FC)
 I (.\Board\IERG3810_KEY.h)(0x60113843)
 I (.\Board\mini_pro_lib\usart.h)(0x607C0881)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x54C245B8)

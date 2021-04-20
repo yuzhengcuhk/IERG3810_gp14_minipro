@@ -21,6 +21,7 @@
 
 int main(void)
 {	
+	int i;
 	button_init();
 	delay_init();
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
@@ -30,7 +31,8 @@ int main(void)
 	IERG3810_TFTLCD_FillRectangle(WHITE,1,240,1,320);
 	TIM3_Init(25,7199);
 	rtc_init();	
-	uart_init(9600);
+	uart_init(9600); 
+	for(i=0;i<4;i++)
 	start_page();
 	start_game();
 }

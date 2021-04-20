@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\Objects\_mini-pro.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\_mini-pro.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Tue Apr 20 15:19:58 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Tue Apr 20 15:56:34 2021
 <BR><P>
-<H3>Maximum Stack Usage =        188 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        212 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; start_page &rArr; start_game &rArr; gameover &rArr;  start_page (Cycle)
 <P>
@@ -232,7 +232,7 @@ Global Symbols
 <P><STRONG><a name="[d4]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[5c]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 188 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 212 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; start_page &rArr; start_game &rArr; gameover &rArr;  start_page (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -1045,8 +1045,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;direction_controller
 </UL>
 
-<P><STRONG><a name="[5d]"></a>main</STRONG> (Thumb, 88 bytes, Stack size 8 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 188<LI>Call Chain = main &rArr; start_page &rArr; start_game &rArr; gameover &rArr;  start_page (Cycle)
+<P><STRONG><a name="[5d]"></a>main</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 212<LI>Call Chain = main &rArr; start_page &rArr; start_game &rArr; gameover &rArr;  start_page (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_PriorityGroupConfig
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_page
@@ -1087,8 +1087,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a8]"></a>start_game</STRONG> (Thumb, 1040 bytes, Stack size 32 bytes, ierg_game_logic.o(i.start_game))
-<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = start_game &rArr; gameover &rArr;  start_page (Cycle)
+<P><STRONG><a name="[a8]"></a>start_game</STRONG> (Thumb, 1154 bytes, Stack size 48 bytes, ierg_game_logic.o(i.start_game))
+<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = start_game &rArr; gameover &rArr;  start_page (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;srand
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rand
@@ -1103,7 +1103,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[a2]"></a>start_page</STRONG> (Thumb, 274 bytes, Stack size 72 bytes, ierg_game_logic.o(i.start_page))
-<BR><BR>[Stack]<UL><LI>Max Depth = 180<LI>Call Chain = start_page &rArr; start_game &rArr; gameover &rArr;  start_page (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 196<LI>Call Chain = start_page &rArr; start_game &rArr; gameover &rArr;  start_page (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_game

@@ -30,3 +30,4 @@
 .\objects\ierg3810_led.o: .\Fw_lib\inc\misc.h
 .\objects\ierg3810_led.o: Board\IERG3810_LED.h
 .\objects\ierg3810_led.o: Board\FONT.H
+.\objects\ierg3810_led.o: .\Board\mini_pro_lib\TFONT.H

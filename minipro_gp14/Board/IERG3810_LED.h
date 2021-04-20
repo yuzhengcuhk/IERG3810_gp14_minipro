@@ -19,4 +19,5 @@ void IERG3810_TFTLCD_FillRectangle(u16 color, u16 start_x, u16 length_x, u16 sta
 void IERG3810_TFTLCD_SetWindow(u16 start_x, u16 start_y, u16 length_x, u16 length_y);
 
 void IERG3810_TFTLCD_ShowChar(u16 x, u16 y, u8 ascii, u16 color, u16 bgcolor);
+void IERG3810_TFTLCD_ShowTChar(u16 x, u16 y, u8 Tfont, u16 color, u16 bgcolor);
 #endif
