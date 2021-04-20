@@ -212,14 +212,14 @@ void start_game()
 				while(1)
 				{
 					srand(calendar.sec);
-<<<<<<< HEAD
+//<<<<<<< HEAD
 					food.food_X=60 + (rand()%(10))*12;
 					food.food_Y=84 + (rand()%(14))*12;
 					
-=======
-					food.X=60 + (rand()%(10))*12;
-					food.Y=84 + (rand()%(14))*12;	
->>>>>>> 38d496b (Testing)
+//=======
+					//food.X=60 + (rand()%(10))*12;
+					//food.Y=84 + (rand()%(14))*12;	
+//>>>>>>> 38d496b (Testing)
 					for(n=0;n<snake.Long;n++)
 					{
 						if(food.food_X==snake.X_coordinate[n]&&food.food_Y==snake.Y_coordinate[n])
@@ -238,7 +238,7 @@ void start_game()
 					item.Y=84 + (rand()%(14))*12;
 					for(n=0;n<snake.Long;n++)
 					{
-						if((item.X==snake.X[n]&&item.Y==snake.Y[n]) || (item.X==food.X && item.Y == food.Y))
+						if((item.X==snake.X_coordinate[n]&&item.Y==snake.Y_coordinate[n]) || (item.X==food.food_X && item.Y == food.food_Y))
 						break;
 					}
 					if(n==snake.Long) {
@@ -252,13 +252,13 @@ void start_game()
 			
 			//Make the food appear
 			if(food.Yes==0)
-<<<<<<< HEAD
+
 			{	GUI_Box(food.food_X,food.food_Y,food.food_X+10,food.food_Y+10,CYAN);}
-=======
-			{	GUI_Box(food.X,food.Y,food.X+10,food.Y+10,CYAN);}
+
+			//{	GUI_Box(food.X,food.Y,food.X+10,food.Y+10,CYAN);}
 			if(item.Yes==0)
 			{	GUI_Box(item.X,item.Y,item.X+10,item.Y+10, 5555);}
->>>>>>> 38d496b (Testing)
+
 
 			//snake eats a food 
 			if(snake.X_coordinate[0]==food.food_X&&snake.Y_coordinate[0]==food.food_Y)
@@ -272,21 +272,21 @@ void start_game()
 				score[2]='\0';
 				food.Yes=1; //for remaking a food 
 			}
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 			for(i=0;i<6;i++)
 			{IERG3810_TFTLCD_ShowChar(i*9+5, 300, score_text[i], 0, WHITE);}
 			
-=======
+//=======
 			//snake eats a item
-			if(snake.X[0]==item.X&&snake.Y[0]==item.Y)
+			if(snake.X_coordinate[0]==item.X&&snake.Y_coordinate[0]==item.Y)
 			{
 				GUI_Box(item.X,item.Y,item.X+10,item.Y+10,WHITE);
 				item_count++;//
 				item.Yes=1; //for remaking a item 
 				
 			}
->>>>>>> 38d496b (Testing)
+//>>>>>>> 38d496b (Testing)
 			for(i=0;i<2;i++)
 			{
 				if(score[i] == '0' && (i == 0)) {;}
