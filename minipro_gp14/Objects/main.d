@@ -33,10 +33,12 @@
 .\objects\main.o: .\Board\mini_pro_lib\IERG3810_Delay.h
 .\objects\main.o: .\Board\mini_pro_lib\IERG3810_LCD_Controller.h
 .\objects\main.o: .\Board\mini_pro_lib\IERG3810_Game_UI.h
+.\objects\main.o: .\Board\mini_pro_lib\IERG3810_LCD_Controller.h
 .\objects\main.o: User\IERG3810_LED.h
 .\objects\main.o: User\IERG3810_KEY.h
 .\objects\main.o: User\IERG3810_Buzzer.h
 .\objects\main.o: .\Board\IERG_Game_Logic.h
+.\objects\main.o: .\Board\mini_pro_lib\IERG3810_LCD_Controller.h
 .\objects\main.o: .\Board\IERG3810_LED.h
 .\objects\main.o: .\Board\IERG3810_KEY.h
 .\objects\main.o: .\Board\mini_pro_lib\usart.h

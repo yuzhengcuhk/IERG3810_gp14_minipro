@@ -34,6 +34,7 @@
 .\objects\ierg_game_logic.o: .\Board\mini_pro_lib\IERG3810_Delay.h
 .\objects\ierg_game_logic.o: .\Board\mini_pro_lib\IERG3810_LCD_Controller.h
 .\objects\ierg_game_logic.o: .\Board\mini_pro_lib\IERG3810_Game_UI.h
+.\objects\ierg_game_logic.o: .\Board\mini_pro_lib\IERG3810_LCD_Controller.h
 .\objects\ierg_game_logic.o: Board\IERG3810_LED.h
 .\objects\ierg_game_logic.o: Board\IERG3810_KEY.h
 .\objects\ierg_game_logic.o: .\Board\mini_pro_lib\usart.h

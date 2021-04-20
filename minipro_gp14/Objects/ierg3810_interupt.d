@@ -33,10 +33,12 @@
 .\objects\ierg3810_interupt.o: .\Board\mini_pro_lib\IERG3810_Delay.h
 .\objects\ierg3810_interupt.o: .\Board\mini_pro_lib\IERG3810_LCD_Controller.h
 .\objects\ierg3810_interupt.o: .\Board\mini_pro_lib\IERG3810_Game_UI.h
+.\objects\ierg3810_interupt.o: .\Board\mini_pro_lib\IERG3810_LCD_Controller.h
 .\objects\ierg3810_interupt.o: Board\IERG3810_LED.h
 .\objects\ierg3810_interupt.o: Board\IERG3810_KEY.h
 .\objects\ierg3810_interupt.o: Board\IERG3810_Buzzer.h
 .\objects\ierg3810_interupt.o: Board\IERG_Game_Logic.h
+.\objects\ierg3810_interupt.o: .\Board\mini_pro_lib\IERG3810_LCD_Controller.h
 .\objects\ierg3810_interupt.o: .\Board\mini_pro_lib\usart.h
 .\objects\ierg3810_interupt.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\ierg3810_interupt.o: .\Board\mini_pro_lib\tim.h

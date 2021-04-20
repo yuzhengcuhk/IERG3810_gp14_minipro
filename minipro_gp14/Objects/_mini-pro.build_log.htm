@@ -3,9 +3,9 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: £gVision V5.15
+IDE-Version: µVision V5.15
 Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: cc cc, ccc, LIC=----
+License Information: Lee Jacob-Lee, CUHK, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.15.0
@@ -21,7 +21,7 @@ Target DLL:      UL2CM3.DLL V1.155.8.0
 Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
-C:\Users\85262\IERG3810_gp14_minipro\minipro_gp14\mini-pro.uvprojx
+C:\Users\Jacob-Lee\Documents\github\IERG3810_gp14_minipro\minipro_gp14\mini-pro.uvprojx
 Project File Date:  04/20/2021
 
 <h2>Output:</h2>
@@ -40,32 +40,16 @@ Board\IERG_Game_Logic.h(14): warning:  #1295-D: Deprecated declaration start_pag
   void start_page();
 Board\IERG_Game_Logic.h(15): warning:  #1295-D: Deprecated declaration start_game - give arg types
   void start_game();
-Board\IERG_Game_Logic.c(146): warning:  #177-D: variable "counter" was declared but never referenced
-        u16 counter = 0;
+Board\IERG_Game_Logic.c(161): warning:  #550-D: variable "life" was set but never used
+        u8 life[2];
 Board\IERG_Game_Logic.c: 7 warnings, 0 errors
-compiling main.c...
-User\IERG3810_LED.h(7): warning:  #1295-D: Deprecated declaration IERG3810_LED_Init - give arg types
-  void IERG3810_LED_Init();
-User\IERG3810_KEY.h(6): warning:  #1295-D: Deprecated declaration IERG3810_KEY_Init - give arg types
-  void IERG3810_KEY_Init();
-User\IERG3810_Buzzer.h(6): warning:  #1295-D: Deprecated declaration IERG_3810_Buzzer_Init - give arg types
-  void IERG_3810_Buzzer_Init();
-.\Board\IERG_Game_Logic.h(14): warning:  #1295-D: Deprecated declaration start_page - give arg types
-  void start_page();
-.\Board\IERG_Game_Logic.h(15): warning:  #1295-D: Deprecated declaration start_game - give arg types
-  void start_game();
-User\main.c(37): warning:  #223-D: function "IERG3810_NVIC_SetPriorityGroup" declared implicitly
-        IERG3810_NVIC_SetPriorityGroup(5);
-User\main.c(38): warning:  #223-D: function "IERG3810_PS2key_ExtiInit" declared implicitly
-        IERG3810_PS2key_ExtiInit();
-User\main.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=9180 RO-data=4568 RW-data=128 ZI-data=2280  
+Program Size: Code=10072 RO-data=4568 RW-data=136 ZI-data=2280  
 FromELF: creating hex file...
-".\Objects\_mini-pro.axf" - 0 Error(s), 14 Warning(s).
+".\Objects\_mini-pro.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
-  C:\Users\85262\IERG3810_gp14_minipro\minipro_gp14\RTE
+  C:\Users\Jacob-Lee\Documents\github\IERG3810_gp14_minipro\minipro_gp14\RTE
   C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>

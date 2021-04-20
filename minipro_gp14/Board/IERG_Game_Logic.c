@@ -39,6 +39,13 @@ struct Item
 	u8 Yes;
 }item;
 
+struct Life_Item
+{
+	u8 type;
+	u8 LX;
+	u8 LY;
+	u8 Yes;
+}life_item;
 
 void start_page(void)	
 {	
@@ -137,13 +144,16 @@ void TIM3_IRQHandler(void)
 }  
 
 char item_msg[] = "Slow Item:";
-int item_count = 48;//means ascii table char "0"
+char item_press[] = "press 0!";
 int period = 0;
 
 void start_game()
 {
+	
+	int count = 0,speed_temp;
+	int item_count = 48;//means ascii table char "0"
 	u16 i,n;
-	u16 counter = 0;
+	u16 bgc = WHITE;
 	
 	char life_text[] = "life:";
 	char score_text[] = "score:";
@@ -169,34 +179,44 @@ void start_game()
 	
 	//item_init
 	item.Yes = 1;
-	
-	
+	life_item.Yes = 1;
 	
 	IERG3810_TFTLCD_FillRectangle(WHITE,1,240,1,320);
 	while(1)	
 	{	
-		//Key 
-		if (ps2count >= 11)
-		{
-			//EXTI->IMR &= ~(1<<11);
-			if (ps2key == 0x70 && item_count > 48){
-				speed = 300;
-				period++;
-				item_count--;
-			}
+			//Key 
+			if (ps2count >= 11)
+			{
+				//EXTI->IMR &= ~(1<<11);
+				if (ps2key == 0x70 && item_count > 48 && period == 0){
+					IERG3810_TFTLCD_FillRectangle(DARKBLUE,0,240,0,320);
+					speed_temp = speed;
+					speed = 100;
+					period++;
+					item_count--;
+					bgc = DARKBLUE;
+				}
 
-			EXTI->PR = 1<<11;
-			//EXTI->IMR = 1<<11;
+				EXTI->PR = 1<<11;
+				//EXTI->IMR = 1<<11;
+				
+			}
+		
+			//Slow mode & return normal mode
+			if (period > 0 && period++ >= 30)
+				{
+					period = 0; 
+					speed = speed_temp;
+					IERG3810_TFTLCD_FillRectangle(WHITE,0,240,0,320);
+					bgc = WHITE;
+				}
 			
-		}
-		
-		//Slow mode & return normal mode
-		if (period > 0 && period++ >= 20){period = 0; speed = 100;}
-		//Show the remaining number of slow items
-		for(i=0;i<10;i++)
-		{IERG3810_TFTLCD_ShowChar(i*9+10, 10, item_msg[i], 0, WHITE);}
-		IERG3810_TFTLCD_ShowChar(i*9+20, 10, item_count, 0, WHITE);
-		
+			//Show the remaining number of slow items
+			for(i=0;i<10;i++)
+			{IERG3810_TFTLCD_ShowChar(i*9+10, 10, item_msg[i], 0, bgc);}
+			IERG3810_TFTLCD_ShowChar(i*9+20, 10, item_count, 0, bgc);
+			for(i=0;i<8;i++)
+			{IERG3810_TFTLCD_ShowChar(i*9+160, 10, item_press[i], 0, bgc);}
 			//?
 			ps2key = 0;
 			ps2count = 0;
@@ -206,60 +226,85 @@ void start_game()
 
 			/*-----------------Food Logic------------------*/
 		
-			//random position for the food
-			if(food.Yes==1) 
-			{
-				while(1)
+				//random position for the food
+				if(food.Yes==1) 
 				{
-					srand(calendar.sec);
+					while(1)
+					{
+						srand(calendar.sec);
 //<<<<<<< HEAD
-					food.food_X=60 + (rand()%(10))*12;
-					food.food_Y=84 + (rand()%(14))*12;
-					
+						food.food_X=60 + (rand()%(10))*12;
+						food.food_Y=84 + (rand()%(14))*12;
+						
 //=======
 					//food.X=60 + (rand()%(10))*12;
 					//food.Y=84 + (rand()%(14))*12;	
 //>>>>>>> 38d496b (Testing)
-					for(n=0;n<snake.Long;n++)
-					{
-						if(food.food_X==snake.X_coordinate[n]&&food.food_Y==snake.Y_coordinate[n])
+					
+						for(n=0;n<snake.Long;n++)
+						{
+							if(food.food_X==snake.X_coordinate[n]&&food.food_Y==snake.Y_coordinate[n])
+							break;
+						}
+						if(n==snake.Long) {
+						food.Yes=0;
+						}
 						break;
 					}
-					if(n==snake.Long) {
-					food.Yes=0;
-					}
-					break;
 				}
-			}
-			if (item.Yes == 1){
+				
+				//Slow item
+				if (item.Yes == 1 && count > 30){
+					while(1)
+					{
+						srand(calendar.sec/10);
+						item.X=60 + (rand()%(10))*12;
+						item.Y=84 + (rand()%(14))*12;
+						for(n=0;n<snake.Long;n++)
+						{
+							if((item.X==snake.X_coordinate[n]&&item.Y==snake.Y_coordinate[n]) || (item.X==food.food_X && item.Y == food.food_Y))
+							break;
+						}
+						if(n==snake.Long) {
+						item.Yes=0;
+						}
+						break;
+						
+					}
+				}
+				
+				//Life item
+				if (life_item.Yes == 1 && count > 20){
 				while(1)
 				{
-					item.X=60 + (rand()%(10))*12;
-					item.Y=84 + (rand()%(14))*12;
+					srand(calendar.sec/15);
+					life_item.LX=60 + (rand()%(10))*12;
+					life_item.LY=84 + (rand()%(14))*12;
 					for(n=0;n<snake.Long;n++)
 					{
-						if((item.X==snake.X_coordinate[n]&&item.Y==snake.Y_coordinate[n]) || (item.X==food.food_X && item.Y == food.food_Y))
+						if((life_item.LX==snake.X_coordinate[n]&&life_item.LY==snake.Y_coordinate[n]) || (life_item.LX==food.food_X && life_item.LY == food.food_Y))
 						break;
 					}
 					if(n==snake.Long) {
-					item.Yes=0;
+					life_item.Yes=0;
 					}
 					break;
 					
 				}
 			}
-				
 			
 			//Make the food appear
 			if(food.Yes==0)
+			{	GUI_Box(food.food_X,food.food_Y,food.food_X+10,food.food_Y+10,GREEN);}
 
-			{	GUI_Box(food.food_X,food.food_Y,food.food_X+10,food.food_Y+10,CYAN);}
-
-			//{	GUI_Box(food.X,food.Y,food.X+10,food.Y+10,CYAN);}
+			//make the items appear
 			if(item.Yes==0)
-			{	GUI_Box(item.X,item.Y,item.X+10,item.Y+10, 5555);}
+			{	GUI_Box(item.X,item.Y,item.X+10,item.Y+10, CYAN);}
 
-
+			if(life_item.Yes==0)
+			{	GUI_Box(life_item.LX,life_item.LY,life_item.LX+10,life_item.LY+10, RED);}
+			
+			
 			//snake eats a food 
 			if(snake.X_coordinate[0]==food.food_X&&snake.Y_coordinate[0]==food.food_Y)
 			{
@@ -275,29 +320,70 @@ void start_game()
 //<<<<<<< HEAD
 
 			for(i=0;i<6;i++)
-			{IERG3810_TFTLCD_ShowChar(i*9+5, 300, score_text[i], 0, WHITE);}
+			{IERG3810_TFTLCD_ShowChar(i*9+5, 300, score_text[i], 0, bgc);}
 			
 //=======
-			//snake eats a item
+			
+			//snake eats a slow item
 			if(snake.X_coordinate[0]==item.X&&snake.Y_coordinate[0]==item.Y)
 			{
 				GUI_Box(item.X,item.Y,item.X+10,item.Y+10,WHITE);
-				item_count++;//
+				if(item_count <57) {item_count++;}//
 				item.Yes=1; //for remaking a item 
+				
+			}
+			
+			//snake eats a life item
+			if(snake.X_coordinate[0]==life_item.LX&&snake.Y_coordinate[0]==life_item.LY)
+			{
+				GUI_Box(life_item.LX,life_item.LY,life_item.LX+10,life_item.LY+10,WHITE);
+				if(game.Life<5) {game.Life++;}
+				life_item.Yes=1; //for remaking a item 
 				
 			}
 //>>>>>>> 38d496b (Testing)
 			for(i=0;i<2;i++)
 			{
-				if(score[i] == '0' && (i == 0)) {;}
-				else{IERG3810_TFTLCD_ShowChar(i*10+50, 300, score[i], 0, WHITE);}
+				if(score[i] == 0x30 && (i == 0)) {;}
+				else{IERG3810_TFTLCD_ShowChar(i*10+60, 300, score[i], 0, bgc);}
 			}
 			//End of food
+			
+			
+			//life display
+			life[0]=game.Life%10+0x30;
+			life[1]='\0';
+			
+			for(i=0;i<game.Life;i++)
+			{IERG3810_TFTLCD_FillRectangle(RED,i*7+200,6,300,14);}
+			for(i=5;i>game.Life;i--)
+			{IERG3810_TFTLCD_FillRectangle(WHITE,-(i-game.Life)*7+235,6,300,14);}
+			for(i=0;i<5;i++)
+			{IERG3810_TFTLCD_ShowChar(i*9+153, 300, life_text[i], 0, bgc);}
+			
+			//IERG3810_TFTLCD_ShowChar(220, 300, life[0], 0, WHITE);
+			//End of life
 			
 			
 			
 			
 			/*-----------------Snake Logic------------------*/
+			
+			
+			
+			//the snake out of the boundary, user will lose the game
+			if(snake.X_coordinate[0]<0) {
+				snake.X_coordinate[0]=240;
+			}
+			if(snake.X_coordinate[0]>240) {
+				snake.X_coordinate[0]=0;
+			}
+			if(snake.Y_coordinate[0]<0) {
+				snake.Y_coordinate[0]=312;
+			}
+			if(snake.Y_coordinate[0]>312) {
+				snake.Y_coordinate[0]=0;
+			}
 			
 			//struct the snake with the long
 			for(i=snake.Long-1;i>0;i--)
@@ -316,10 +402,15 @@ void start_game()
 			}
 				
 			//make the snake appear
-			for(i=0;i<snake.Long;i++) { GUI_Box(snake.X_coordinate[i],snake.Y_coordinate[i],snake.X_coordinate[i]+10,snake.Y_coordinate[i]+10,YELLOW);}
+			for(i=0;i<snake.Long;i++) { 
+			if(period!=0){GUI_Box(snake.X_coordinate[i],snake.Y_coordinate[i],snake.X_coordinate[i]+10,snake.Y_coordinate[i]+10,CYAN);}
+			else{GUI_Box(snake.X_coordinate[i],snake.Y_coordinate[i],snake.X_coordinate[i]+10,snake.Y_coordinate[i]+10,YELLOW);}
+			}
 			
 			//make the tail of the snake disappear
-			GUI_Box(snake.X_coordinate[snake.Long-1],snake.Y_coordinate[snake.Long-1],snake.X_coordinate[snake.Long-1]+10,snake.Y_coordinate[snake.Long-1]+10,WHITE);
+			if(period!=0){GUI_Box(snake.X_coordinate[snake.Long-1],snake.Y_coordinate[snake.Long-1],snake.X_coordinate[snake.Long-1]+10,snake.Y_coordinate[snake.Long-1]+10,DARKBLUE);}
+			else{GUI_Box(snake.X_coordinate[snake.Long-1],snake.Y_coordinate[snake.Long-1],snake.X_coordinate[snake.Long-1]+10,snake.Y_coordinate[snake.Long-1]+10,WHITE);}
+
 			//End of snake
 			
 				
@@ -328,10 +419,8 @@ void start_game()
 				
 				
 			/*-----------------Life Logic------------------*/
-			//the snake out of the boundary, user will lose the game
-			if(snake.X_coordinate[0]<0||snake.X_coordinate[0]>220||snake.Y_coordinate[0]<0||snake.Y_coordinate[0]>300) {snake.Life=0;}
 			
-		  	//the snake hit its' body, life -1
+		  //the snake hit its' body, life -1
 			for(i=3;i<snake.Long;i++)
 			{
 				if(snake.X_coordinate[i]==snake.X_coordinate[0]&&snake.Y_coordinate[i]==snake.Y_coordinate[0]) 
@@ -350,22 +439,16 @@ void start_game()
 				break;
 			}	
 
-			//life display
-			life[0]=game.Life%10+0x30;
-			life[1]='\0';
-			
-			for(i=0;i<5;i++)
-			{IERG3810_TFTLCD_ShowChar(i*9+166, 300, life_text[i], 0, WHITE);}
-			
-			IERG3810_TFTLCD_ShowChar(220, 300, life[0], 0, WHITE);
-			//End of life
-			
-			
+
 			
 			
 			
 			//control the speed of the snake 
-			delay_ms(speed); //easy:300 normal:100 hard:50 
+			delay_ms(speed); //easy:300 normal:100 hard:50
+			if(speed > 10) { if(count == 45) { speed=speed-10; count = 0;}}
+			count++;
+			
 			GPIOB->BRR = 1 << 8;
+			//if(snake.Long == 30){break;}
 		}	
 }
