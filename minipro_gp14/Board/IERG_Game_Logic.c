@@ -4,7 +4,6 @@
 
 u8 key;
 u8 start=0;
-u16 speed = 100; //easy:300 normal:100 hard:50 
 extern int ps2key, ps2count, timeout;
 
 struct Snake_data
@@ -149,7 +148,7 @@ int period = 0;
 
 void start_game()
 {
-	
+	u16 speed = 100;
 	int count = 0,speed_temp;
 	int item_count = 48;//means ascii table char "0"
 	u16 i,n;
