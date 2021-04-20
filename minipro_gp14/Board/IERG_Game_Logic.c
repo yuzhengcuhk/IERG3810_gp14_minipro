@@ -4,7 +4,8 @@
 
 u8 key;
 u8 start=0;
-u8 speed = 100; //easy:300 normal:100 hard:50 
+u16 speed = 100; //easy:300 normal:100 hard:50 
+extern int ps2key, ps2count, timeout;
 
 struct Snake_data
 {
@@ -30,7 +31,13 @@ struct Game_data
 	u8 Life;
 }game;
 
-
+struct Item
+{
+	u8 type;
+	u8 X;
+	u8 Y;
+	u8 Yes;
+}item;
 
 
 void start_page(void)	
@@ -129,6 +136,9 @@ void TIM3_IRQHandler(void)
 	}
 }  
 
+char item_msg[] = "Slow Item:";
+int item_count = 48;//means ascii table char "0"
+int period = 0;
 
 void start_game()
 {
@@ -157,10 +167,42 @@ void start_game()
 	snake.X_coordinate[0]=120;snake.Y_coordinate[0]=168;
 	snake.X_coordinate[1]=120;snake.Y_coordinate[1]=168;
 	
+	//item_init
+	item.Yes = 1;
+	
+	
 	
 	IERG3810_TFTLCD_FillRectangle(WHITE,1,240,1,320);
 	while(1)	
 	{	
+		//Key 
+		if (ps2count >= 11)
+		{
+			//EXTI->IMR &= ~(1<<11);
+			if (ps2key == 0x70 && item_count > 48){
+				speed = 300;
+				period++;
+				item_count--;
+			}
+
+			EXTI->PR = 1<<11;
+			//EXTI->IMR = 1<<11;
+			
+		}
+		
+		//Slow mode & return normal mode
+		if (period > 0 && period++ >= 20){period = 0; speed = 100;}
+		//Show the remaining number of slow items
+		for(i=0;i<10;i++)
+		{IERG3810_TFTLCD_ShowChar(i*9+10, 10, item_msg[i], 0, WHITE);}
+		IERG3810_TFTLCD_ShowChar(i*9+20, 10, item_count, 0, WHITE);
+		
+			//?
+			ps2key = 0;
+			ps2count = 0;
+
+		
+			//{	GUI_Box(food.X,food.Y,food.X+15,food.Y+15, 5555);}
 
 			/*-----------------Food Logic------------------*/
 		
@@ -170,22 +212,53 @@ void start_game()
 				while(1)
 				{
 					srand(calendar.sec);
+<<<<<<< HEAD
 					food.food_X=60 + (rand()%(10))*12;
 					food.food_Y=84 + (rand()%(14))*12;
 					
+=======
+					food.X=60 + (rand()%(10))*12;
+					food.Y=84 + (rand()%(14))*12;	
+>>>>>>> 38d496b (Testing)
 					for(n=0;n<snake.Long;n++)
 					{
 						if(food.food_X==snake.X_coordinate[n]&&food.food_Y==snake.Y_coordinate[n])
 						break;
 					}
-					if(n==snake.Long) {food.Yes=0;}
+					if(n==snake.Long) {
+					food.Yes=0;
+					}
 					break;
 				}
 			}
+			if (item.Yes == 1){
+				while(1)
+				{
+					item.X=60 + (rand()%(10))*12;
+					item.Y=84 + (rand()%(14))*12;
+					for(n=0;n<snake.Long;n++)
+					{
+						if((item.X==snake.X[n]&&item.Y==snake.Y[n]) || (item.X==food.X && item.Y == food.Y))
+						break;
+					}
+					if(n==snake.Long) {
+					item.Yes=0;
+					}
+					break;
+					
+				}
+			}
+				
 			
 			//Make the food appear
 			if(food.Yes==0)
+<<<<<<< HEAD
 			{	GUI_Box(food.food_X,food.food_Y,food.food_X+10,food.food_Y+10,CYAN);}
+=======
+			{	GUI_Box(food.X,food.Y,food.X+10,food.Y+10,CYAN);}
+			if(item.Yes==0)
+			{	GUI_Box(item.X,item.Y,item.X+10,item.Y+10, 5555);}
+>>>>>>> 38d496b (Testing)
 
 			//snake eats a food 
 			if(snake.X_coordinate[0]==food.food_X&&snake.Y_coordinate[0]==food.food_Y)
@@ -199,10 +272,21 @@ void start_game()
 				score[2]='\0';
 				food.Yes=1; //for remaking a food 
 			}
+<<<<<<< HEAD
 
 			for(i=0;i<6;i++)
 			{IERG3810_TFTLCD_ShowChar(i*9+5, 300, score_text[i], 0, WHITE);}
 			
+=======
+			//snake eats a item
+			if(snake.X[0]==item.X&&snake.Y[0]==item.Y)
+			{
+				GUI_Box(item.X,item.Y,item.X+10,item.Y+10,WHITE);
+				item_count++;//
+				item.Yes=1; //for remaking a item 
+				
+			}
+>>>>>>> 38d496b (Testing)
 			for(i=0;i<2;i++)
 			{
 				if(score[i] == '0' && (i == 0)) {;}

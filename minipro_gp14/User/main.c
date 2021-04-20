@@ -31,8 +31,14 @@ int main(void)
 	IERG3810_TFTLCD_FillRectangle(WHITE,1,240,1,320);
 	TIM3_Init(25,7199);
 	rtc_init();	
+<<<<<<< HEAD
 	uart_init(9600); 
 	for(i=0;i<4;i++)
+=======
+	uart_init(9600);
+	IERG3810_NVIC_SetPriorityGroup(5);
+	IERG3810_PS2key_ExtiInit();
+>>>>>>> 38d496b (Testing)
 	start_page();
 	start_game();
 }
