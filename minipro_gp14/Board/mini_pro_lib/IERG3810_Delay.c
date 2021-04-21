@@ -15,7 +15,6 @@ static u16 fac_ms=0;
 #define delay_osintnesting 	OSIntNesting
 #endif
 
-//֧��UCOSIII
 #ifdef 	CPU_CFG_CRITICAL_METHOD	
 #define delay_osrunning		OSRunning
 #define delay_ostickspersec	OSCfg_TickRate_Hz

@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
 C:\Users\Jacob-Lee\Documents\github\IERG3810_gp14_minipro\minipro_gp14\mini-pro.uvprojx
-Project File Date:  04/20/2021
+Project File Date:  04/21/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -40,13 +40,15 @@ Board\IERG_Game_Logic.h(14): warning:  #1295-D: Deprecated declaration start_pag
   void start_page();
 Board\IERG_Game_Logic.h(15): warning:  #1295-D: Deprecated declaration start_game - give arg types
   void start_game();
-Board\IERG_Game_Logic.c(161): warning:  #550-D: variable "life" was set but never used
+Board\IERG_Game_Logic.c(114): warning:  #177-D: variable "start" was declared but never referenced
+        static u8 start=0;
+Board\IERG_Game_Logic.c(173): warning:  #550-D: variable "life" was set but never used
         u8 life[2];
-Board\IERG_Game_Logic.c: 7 warnings, 0 errors
+Board\IERG_Game_Logic.c: 8 warnings, 0 errors
 linking...
-Program Size: Code=10072 RO-data=4568 RW-data=136 ZI-data=2280  
+Program Size: Code=10684 RO-data=4568 RW-data=152 ZI-data=2280  
 FromELF: creating hex file...
-".\Objects\_mini-pro.axf" - 0 Error(s), 7 Warning(s).
+".\Objects\_mini-pro.axf" - 0 Error(s), 8 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   C:\Users\Jacob-Lee\Documents\github\IERG3810_gp14_minipro\minipro_gp14\RTE
